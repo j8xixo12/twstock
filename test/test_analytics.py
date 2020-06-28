@@ -43,22 +43,25 @@ class AnalyticsTest(unittest.TestCase):
 
     def test_moving_average(self):
         data = [50, 60, 70, 75]
-
+        ng_result_list = []
         # Legacy moving_average will affect data argument's data
-        ng_result = self.ng.moving_average(data, 2)
+        ng_result = self.ng.moving_average(pd.DataFrame(data), 2)
         legacy_result = self.legacy.moving_average(data, 2)
-        self.assertEqual(ng_result, legacy_result)
-        self.assertEqual(ng_result, [55.0, 65.0, 72.5])
+        ng_result.dropna(inplace = True)
+        for i in range(len(ng_result)):
+            ng_result_list.append(ng_result.iloc[i, 0])
+        self.assertEqual(ng_result_list, legacy_result)
+        self.assertEqual(ng_result_list, [55.0, 65.0, 72.5])
 
     def test_ma_bias_ratio(self):
         data = [50, 60, 70, 75, 80, 88, 102, 105, 106]
-        self.ng.price = data
+        self.ng.price = pd.DataFrame(data)
         ng_result = self.ng.ma_bias_ratio(3, 6)
         legacy_result = self.legacy.ma_bias_ratio(3, 6, data)
         self.assertEqual(ng_result, legacy_result)
 
         data = [75, 72, 77, 85, 100, 65, 60, 55, 52, 45]
-        self.ng.price = data
+        self.ng.price = pd.DataFrame(data)
         ng_result = self.ng.ma_bias_ratio(3, 6)
         legacy_result = self.legacy.ma_bias_ratio(3, 6, data)
         self.assertEqual(ng_result, legacy_result)
