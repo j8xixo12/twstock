@@ -15,7 +15,7 @@ class Analytics(object):
 
     def moving_average(self, data, days):
         result = data.rolling(days).mean()        
-        return result
+        return result.round(2)
 
     def ma_bias_ratio(self, day1, day2):
         """Calculate moving average bias ratio"""
@@ -24,7 +24,7 @@ class Analytics(object):
         data1.dropna(inplace = True)
         data2.dropna(inplace = True)
         result = [data1.iloc[-i, 0] - data2.iloc[-i, 0] for i in range(1, min(len(data1), len(data2)) + 1)]
-        return result
+        return result[::-1]
 
     def ma_bias_ratio_pivot(self, data, sample_size=5, position=False):
         """Calculate pivot point"""
