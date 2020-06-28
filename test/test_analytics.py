@@ -1,4 +1,5 @@
 import unittest
+import pandas as pd
 from twstock import stock
 from twstock import analytics
 from twstock import legacy
@@ -12,31 +13,31 @@ class AnalyticsTest(unittest.TestCase):
     def test_continuous(self):
         data = [1, 2, 3, 4, 5, 6, 7]
         legacy_result = self.legacy.cal_continue(data)
-        ng_result = self.ng.continuous(data)
+        ng_result = self.ng.continuous(pd.DataFrame(data))
         self.assertEqual(ng_result, legacy_result)
         self.assertEqual(ng_result, 6)
 
         data = [1, 2, 3, 4, 1, 2]
         legacy_result = self.legacy.cal_continue(data)
-        ng_result = self.ng.continuous(data)
+        ng_result = self.ng.continuous(pd.DataFrame(data))
         self.assertEqual(ng_result, legacy_result)
         self.assertEqual(ng_result, 1)
 
         data = [1, 2, 3, 4, 1, 2, 3, 4, 5]
         legacy_result = self.legacy.cal_continue(data)
-        ng_result = self.ng.continuous(data)
+        ng_result = self.ng.continuous(pd.DataFrame(data))
         self.assertEqual(ng_result, legacy_result)
         self.assertEqual(ng_result, 4)
 
         data = [5, 4, 3, 2, 1]
         legacy_result = self.legacy.cal_continue(data)
-        ng_result = self.ng.continuous(data)
+        ng_result = self.ng.continuous(pd.DataFrame(data))
         self.assertEqual(ng_result, legacy_result)
         self.assertEqual(ng_result, -4)
 
         data = [5, 4, 3, 2, 1, 5, 4, 3]
         legacy_result = self.legacy.cal_continue(data)
-        ng_result = self.ng.continuous(data)
+        ng_result = self.ng.continuous(pd.DataFrame(data))
         self.assertEqual(ng_result, legacy_result)
         self.assertEqual(ng_result, -2)
 
