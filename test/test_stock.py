@@ -98,52 +98,52 @@ class StockTest(object):
     def test_date(self):
         self.assertIsInstance(self.stk.date, list)
         self.assertEqual(len(self.stk.date), len(self.stk.data))
-        self.assertEqual(self.stk.date, [d.date for d in self.stk.data])
+        self.assertEqual(self.stk.date, pd.DataFrame([d.date for d in self.stk.data]))
 
     def test_capacity(self):
         self.assertIsInstance(self.stk.capacity, pd.core.frame.DataFrame)
         self.assertEqual(len(self.stk.capacity), len(self.stk.data))
-        self.assertEqual(self.stk.capacity, [d.capacity for d in self.stk.data])
+        self.assertEqual(self.stk.capacity, pd.DataFrame([d.capacity for d in self.stk.data]))
 
     def test_turnover(self):
         self.assertIsInstance(self.stk.turnover, pd.core.frame.DataFrame)
         self.assertEqual(len(self.stk.turnover), len(self.stk.data))
-        self.assertEqual(self.stk.turnover, [d.turnover for d in self.stk.data])
+        self.assertEqual(self.stk.turnover, pd.DataFrame([d.turnover for d in self.stk.data]))
 
     def test_price(self):
         self.assertIsInstance(self.stk.price, pd.core.frame.DataFrame)
         self.assertEqual(len(self.stk.price), len(self.stk.data))
-        self.assertEqual(self.stk.price, [d.close for d in self.stk.data])
+        self.assertEqual(self.stk.price, pd.DataFrame([d.close for d in self.stk.data]))
 
     def test_high(self):
         self.assertIsInstance(self.stk.high, pd.core.frame.DataFrame)
         self.assertEqual(len(self.stk.high), len(self.stk.data))
-        self.assertEqual(self.stk.high, [d.high for d in self.stk.data])
+        self.assertEqual(self.stk.high, pd.DataFrame([d.high for d in self.stk.data]))
 
     def test_low(self):
         self.assertIsInstance(self.stk.low, pd.core.frame.DataFrame)
         self.assertEqual(len(self.stk.low), len(self.stk.data))
-        self.assertEqual(self.stk.low, [d.low for d in self.stk.data])
+        self.assertEqual(self.stk.low, pd.DataFrame([d.low for d in self.stk.data]))
 
     def test_open(self):
         self.assertIsInstance(self.stk.open, pd.core.frame.DataFrame)
         self.assertEqual(len(self.stk.open), len(self.stk.data))
-        self.assertEqual(self.stk.open, [d.open for d in self.stk.data])
+        self.assertEqual(self.stk.open, pd.DataFrame([d.open for d in self.stk.data]))
 
     def test_close(self):
         self.assertIsInstance(self.stk.close, pd.core.frame.DataFrame)
         self.assertEqual(len(self.stk.close), len(self.stk.data))
-        self.assertEqual(self.stk.close, [d.close for d in self.stk.data])
+        self.assertEqual(self.stk.close, pd.DataFrame([d.close for d in self.stk.data]))
 
     def test_change(self):
         self.assertIsInstance(self.stk.change, pd.core.frame.DataFrame)
         self.assertEqual(len(self.stk.change), len(self.stk.data))
-        self.assertEqual(self.stk.change, [d.change for d in self.stk.data])
+        self.assertEqual(self.stk.change, pd.DataFrame([d.change for d in self.stk.data]))
 
     def test_transaction(self):
         self.assertIsInstance(self.stk.transaction, pd.core.frame.DataFrame)
         self.assertEqual(len(self.stk.transaction), len(self.stk.data))
-        self.assertEqual(self.stk.transaction, [d.transaction for d in self.stk.data])
+        self.assertEqual(self.stk.transaction, pd.DataFrame([d.transaction for d in self.stk.data]))
 
 
 class TWSEStockTest(unittest.TestCase, StockTest):
@@ -155,7 +155,7 @@ class TWSEStockTest(unittest.TestCase, StockTest):
         self.stk.fetch(2015, 5)
         self.assertIsInstance(self.stk.price, pd.core.frame.DataFrame)
         self.assertEqual(len(self.stk.price), len(self.stk.data))
-        self.assertEqual(self.stk.price, [d.close for d in self.stk.data])
+        self.assertEqual(self.stk.price, [pd.DataFrame([d.close for d in self.stk.data]))
         self.assertEqual(self.stk.price,
                          pd.DataFrame([147.5, 147.0, 147.5, 146.5, 146.5, 148.5, 147.5,
                           148.0, 146.0, 146.5, 146.5, 146.5, 146.5, 145.5,
@@ -165,7 +165,7 @@ class TWSEStockTest(unittest.TestCase, StockTest):
         self.stk.fetch(2015, 5)
         self.assertIsInstance(self.stk.capacity, pd.core.frame.DataFrame)
         self.assertEqual(len(self.stk.capacity), len(self.stk.data))
-        self.assertEqual(self.stk.capacity, [d.capacity for d in self.stk.data])
+        self.assertEqual(self.stk.capacity, pd.DataFrame([d.capacity for d in self.stk.data]))
         self.assertEqual(self.stk.capacity,
                          pd.DataFrame([30868640, 27789400, 18824208, 21908150, 20035646,
                           20402529, 24956498, 19437537, 39888654, 24831890,
@@ -182,7 +182,7 @@ class TPEXStockTest(unittest.TestCase, StockTest):
         self.stk.fetch(2015, 5)
         self.assertIsInstance(self.stk.price, pd.core.frame.DataFrame)
         self.assertEqual(len(self.stk.price), len(self.stk.data))
-        self.assertEqual(self.stk.price, [d.close for d in self.stk.data])
+        self.assertEqual(self.stk.price, pd.DataFrame([d.close for d in self.stk.data]))
         self.assertEqual(self.stk.price,
                          pd.DataFrame([91.4, 91.8, 91.8, 93.5, 91.0, 84.7, 84.0, 85.8, 87.1,
                           86.1, 83.9, 84.5, 86.7, 86.3, 86.0, 86.2, 91.1, 90.9,
@@ -192,7 +192,7 @@ class TPEXStockTest(unittest.TestCase, StockTest):
         self.stk.fetch(2015, 5)
         self.assertIsInstance(self.stk.capacity, pd.core.frame.DataFrame)
         self.assertEqual(len(self.stk.capacity), len(self.stk.data))
-        self.assertEqual(self.stk.capacity, [d.capacity for d in self.stk.data])
+        self.assertEqual(self.stk.capacity, pd.DataFrame([d.capacity for d in self.stk.data]))
         self.assertEqual(self.stk.capacity,
                          pd.DataFrame([374000, 474000, 468000, 1257000, 1079000, 3400000,
                           3424000, 1078000, 1433000, 891000, 1202000, 1008000,
