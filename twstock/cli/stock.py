@@ -7,6 +7,6 @@ def run(argv):
     for sid in argv:
         s = twstock.Stock(sid)
         print('-------------- %s ---------------- ' % sid)
-        print('high : {:>5} {:>5} {:>5} {:>5} {:>5}'.format(*s.high[-5:]))
-        print('low  : {:>5} {:>5} {:>5} {:>5} {:>5}'.format(*s.low[-5:]))
-        print('price: {:>5} {:>5} {:>5} {:>5} {:>5}'.format(*s.price[-5:]))
+        print('high : {:>5} {:>5} {:>5} {:>5} {:>5}'.format(*s.high.iloc[-5:, 0]))
+        print('low  : {:>5} {:>5} {:>5} {:>5} {:>5}'.format(*s.low.iloc[-5:, 0]))
+        print('price: {:>5} {:>5} {:>5} {:>5} {:>5}'.format(*s.price.iloc[-5:, 0]))
