@@ -155,7 +155,7 @@ class TWSEStockTest(unittest.TestCase, StockTest):
         self.stk.fetch(2015, 5)
         self.assertIsInstance(self.stk.price, pd.core.frame.DataFrame)
         self.assertEqual(len(self.stk.price), len(self.stk.data))
-        self.assertEqual(self.stk.price, [pd.DataFrame([d.close for d in self.stk.data]))
+        self.assertEqual(self.stk.price, pd.DataFrame([d.close for d in self.stk.data]))
         self.assertEqual(self.stk.price,
                          pd.DataFrame([147.5, 147.0, 147.5, 146.5, 146.5, 148.5, 147.5,
                           148.0, 146.0, 146.5, 146.5, 146.5, 146.5, 145.5,
